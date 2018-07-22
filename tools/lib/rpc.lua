@@ -14,8 +14,8 @@ function rpc.broadcast(cmd)
     print("Got a message from " .. from .. " on port " .. port .. ": " .. tostring(message))
 end
 
-function rpc.call(addr, cmd)
-    if not component.modem.send(addr, PORT, cmd) then error("broadcast failed") end
+function rpc.call(addr, PORT, cmd)
+    if not component.modem.send(addr, PORT, cmd) then error("send failed") end
     local _, _, from, port, _, message = event.pull("modem_message")
     -- print("Got a message from " .. from .. " on port " .. port .. ": " .. tostring(message))
     message = serialization.unserialize(message)
